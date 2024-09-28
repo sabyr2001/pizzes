@@ -1,1 +1,234 @@
-<h1>Sabyr Turdukulovuhiuhukjhiujk</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание чека МБанк</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Создание чека</h1>
+        <form id="checkForm">
+            <label for="recipient">Имя получателя:</label>
+            <input type="text" id="recipient" name="recipient" required>
+            
+            <label for="amount">Сумма:</label>
+            <input type="number" id="amount" name="amount" required>
+            
+            <label for="phoneNumber">Номер телефона:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" required>
+            
+            <button type="button" onclick="generateCheck()">Создать чек</button>
+        </form>
+    </div>
+
+    <script>
+        function generateCheck() {
+            const recipient = document.getElementById('recipient').value;
+            const amount = document.getElementById('amount').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const currentTime = new Date().toLocaleString();
+
+            if (!recipient || !amount || !phoneNumber) {
+                alert('Пожалуйста, заполните все поля.');
+                return;
+            }
+
+            const checkHTML = `
+                <html>
+                <head>
+                    <title>Чек</title>
+                    <style type="text/css">
+                        .box{
+                            background-image: url('./img./chat.jpeg');
+                            background-size: contain;
+                            /*padding: 20px;*/
+                            width: 400px;
+                            height: 890px;
+                            margin: auto;
+                            position: relative;
+                            z-index: 1;
+                        }
+                        .fon{
+                            position: relative;
+                            width: 100%;
+                            height: 100%;
+                            background-color: black;
+                            opacity: 0.5;
+                            z-index: 2;
+
+                        }
+                        .fon1{
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: transparent;
+                            backdrop-filter: blur(2px);
+                        }
+                        .block{
+                            width: 340px;
+                            border-radius: 20px;
+                            background: #fff;
+                            position: absolute;
+                            top: 175px;
+                            left: 15px;
+                            z-index: 4;
+                            padding: 13px;
+                        }
+                        .mbank_logo{
+                            width: 80px;
+                            height: 27px;
+                            
+                        }
+                        .mbank_false{
+                            width: 25px;
+                            height: 25px;
+                            
+                        }
+                        .icon_true{
+                            width: 55px;
+                            margin: auto;
+                            margin-top: -5px;
+                            margin-bottom: 10px;
+                        }
+                        .flex{
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .boxInimg{
+                            height: 100px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                        .theme{
+                            text-align: center;
+                            color: #01875f;
+                            font-family: Arial,  sans-serif;
+                            margin-top: -14.3px;
+                            margin-bottom: 15px;
+                            font-size: 18px;
+                        }
+                        .mines_summ{
+                            text-align: center;
+                            margin-bottom: 5px;
+                            margin-top: -1px; 
+                            font-size: 19px;
+                            font-family: sans-serif;
+                        }
+                         .text{
+                            color: #5e5e5e;
+                            text-align: center;
+                            border-bottom: 2px dashed #d4d4d4;
+                            padding-bottom: 15px;
+                            font-size: 15.5px;
+                            margin-top: 3px;
+                            margin-bottom: 10px;
+                            font-family: sans-serif;
+                        }
+                        p{
+                            color: #5e5e5e;
+                            margin-top: 0px;
+                            font-size: 15px;
+                            margin-bottom: 9px;
+                        }
+                        .block2{
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .black_color{
+                            color: black;
+                        }
+                        .margin{
+                            margin-top: 14px;
+                        }
+                        .footerBox{
+                            position: absolute;
+                            bottom: 185px;
+                            left: 20px; 
+                            z-index: 5; 
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .footerBlock{
+                            margin: 40px;
+                            position: relative;
+                        }
+                        span{
+                            color: white;
+                            position: absolute;
+                            left: -15px;
+                            text-align: center;
+                        }
+                        .footerImg{
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 100%;
+                        }
+                    </style>
+                </head>
+                <body> 
+                    <div class="box">
+                        <div class="fon"></div>
+                        <div class="block">
+                            <div class="flex">
+                                <img class="mbank_logo" src="./img./mbank_logo.jpg" alt="">
+                                <img class="mbank_false" src="./img./mbank_false.jpg" alt="">
+                            </div>
+                            <div class="boxInimg">
+                                <img class="icon_true" src="./img./icon_true.png" alt="">
+                            </div>
+                            <h3 class="theme">Транзакция успешно проведена</h3>
+                            <h2 class="mines_summ">- ${amount},00 <u>C</u></h2>
+                            <h4 class="text">Перевод по номеру телефона</h4>
+                            <div class="block2 margin">
+                                    <p>Имя получателя</p>
+                                    <p class="black_color">${recipient}.</p>
+                            </div>
+                            <div class="block2">
+                                <p>Оплачено со счета</p>
+                                <p class="black_color">9087483902854824</p>
+                            </div>
+                            <div class="block2">
+                                <p>Дата операции</p>
+                                <p class="black_color">${currentTime}</p>
+                            </div>
+                            <div style="border-bottom: 2px dashed #d4d4d4; padding-bottom: 6px;" class="block2">
+                                <p>Номер квитанции</p>
+                                <p class="black_color">Р03295872068385</p>
+                            </div>
+                            <div style="margin-top: 12px;">
+                                <p style="margin-bottom: 5px;">Перевод по номеру телефона. 996${phoneNumber}/</p>
+                                <p style="margin-bottom: 0;">${recipient}./ / Сумма ${amount}.00 KGS</p>
+                            </div>
+                        </div>
+                        
+                        <div class="fon1"></div>
+                        <div class="footerBox" >
+                            <div class="footerBlock">
+                                <img class="footerImg" src="./img./1.jpeg" alt=""><br>
+                                <span>Отправить</span>
+                            </div>
+                            <div class="footerBlock">
+                                <img class="footerImg" src="./img./3.jpeg" alt=""><br>
+                                <span>Повторить<br>платеж</span>
+                            </div>
+                            <div class="footerBlock">
+                                <img class="footerImg" src="./img./2.jpeg" alt=""><br>
+                                <span style="left: -8px;">Создать <br>шаблон</span>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `;
+            const newWindow = window.open('', '', 'width=600,height=400');
+            newWindow.document.write(checkHTML);
+            newWindow.document.close();
+        }
+    </script>
+</body>
+</html>
